@@ -1,25 +1,185 @@
 site_name: DNL1905—Wiki
-site_url: http://localhost:8000  # 本地调试无需修改
-theme:
-  name: material    # 启用material主题
+site_url: https://www.dnl1905-Wiki.com/
+repo_name: Glimmer14/DNL1905-Wiki
+repo_url: https://github.com/Glimmer14/DNL1905-Wiki
 
+
+theme:
+  name: material
+  custom_dir: overrides
   palette:
-    # Dark Mode
-    - scheme: slate
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
       toggle:
-        icon: material/brightness-4
-        name: Dark mode
+        icon: material/brightness-auto
+        name: 切换至浅色模式
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
       primary: light blue
       accent: deep orange
-
-    # Light Mode
-    - scheme: default
       toggle:
         icon: material/brightness-7
-        name: Light mode
+        name: 切换至深色模式
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate 
       primary: light blue
       accent: deep orange
-  
+      toggle:
+        icon: material/brightness-4
+        name: 切换至自动模式
+  icon: 
+    repo: fontawesome/brands/github
   logo: images/logo/logo.png
-
   favicon: images/logo/logo.png
+  language: zh
+  features:
+    - navigation.tabs
+    - navigation.instant
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - content.tooltips
+    - search.suggest
+    - content.code.annotate
+    - content.code.copy
+
+
+extra:
+  social:
+    - icon: material/web
+      link: https://www.carhy.dicp.ac.cn
+      name: 课题组网站
+  author_name: '{{ page.meta.authors }}'
+
+
+plugins:
+  - search:
+      separator: '[\s\-\.]'
+  - git-revision-date-localized
+  - glightbox:
+       touchNavigation: true
+       loop: false
+       effect: zoom
+       slide_effect: slide
+       width: 100%
+       height: auto
+       zoomable: true
+       draggable: true
+       skip_classes:
+         - custom-skip-class-name
+       auto_caption: false
+       caption_position: bottom
+       background: white
+       shadow: true
+       manual: false
+
+
+markdown_extensions:
+  # Python Markdown
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+
+  # Python Markdown Extensions
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+extra_javascript:
+  - javascripts/analytic.js
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+
+
+extra_css:
+  - css/avatar.css
+
+
+nav:
+  - 首页: index.md
+  - 参与 Wiki: 
+      - 前言: how_to_edit/say_something.md
+      - 准备工作: how_to_edit/pre_work.md
+      - 修改 Wiki: how_to_edit/how_to_do.md
+      - Markdown 语法: how_to_edit/markdown.md
+  - 新生培训: 
+      - 导览: freshman_guide/TOC.md
+      - 文献:
+          - 查找文献: freshman_guide/article/find.md
+          - 文献管理: freshman_guide/article/manage.md
+          - 文献阅读: freshman_guide/article/read.md
+          - 文献汇报: freshman_guide/article/presen.md
+      - 如何汇报: freshman_guide/presen.md
+      - 实验室安全: freshman_guide/secure.md
+      - 实验操作:
+          - 原料的准备: freshman_guide/exper/source.md
+          - 催化剂合成: freshman_guide/exper/synth.md
+          - 催化剂评价: freshman_guide/exper/evaluate.md
+  - 实验室管理: 
+      - 导览: lab/TOC.md
+      - 919实验室:
+          - 919导览: lab/919/TOC.md
+      - 316实验室:
+          - 316导览: lab/316/TOC.md
+      - 319-2实验室:
+          - 319-2导览: lab/319-2/TOC.md
+      - 313实验室:
+          - 313导览: lab/313/TOC.md
+          - CO₂加氢装置: lab/313/CO2_hydro.md
+  - 表征知识: 
+      - 导览: charac/TOC.md
+      - XRD: 
+          - 原理: charac/XRD/theory.md
+          - 操作: charac/XRD/manage.md
+          - 数据处理: charac/XRD/data.md
+  - 科研软件: 
+      - 导览: software/TOC.md
+      - Origin: 
+          - 安装Origin: software/origin/origin_install.md
+          - 绘制XRD图: software/origin/XRD.md
+          - 绘制TPD图: software/origin/TPD.md
+      - HighScore: software/highscore.md
+      - Jade: software/jade.md
+  - 阅读资料:
+      - 经典文献: book/article.md
+      - 推荐书籍: book/book.md
+  - 科研写作:
+      - how to write: writting/how_to_write.md
+  - 研究生教育资料:
+      - 开题: resorce/proposal_report.md
+      - 中期: resorce/interim_report.md
+      - 毕业: resorce/graduate.md
+      - PPT模板: resorce/PPT.md
+      - 考博资料: resorce/Phd_exam.md
+  - 贡献者列表: contributors.md
+
